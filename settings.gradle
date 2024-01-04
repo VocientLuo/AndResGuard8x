@@ -1,0 +1,48 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+        maven { url uri("./repo") }
+        maven { url "https://maven.aliyun.com/repository/google" }
+        maven { url "https://maven.aliyun.com/repository/central" }
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url "https://repo1.maven.org/maven2/" }
+        maven { url "https://www.jitpack.io" }
+
+        //公司maven私服
+        maven {
+            url "https://packages.aliyun.com/maven/repository/2059818-release-mYrrDg/"
+            credentials {
+                username '611dcf0c1069a2b099fef257'
+                password 'BSYRFZsTXZv4'
+            }
+        }
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url uri("./repo") }
+        maven { url "https://maven.aliyun.com/repository/google" }
+        maven { url "https://maven.aliyun.com/repository/central" }
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url "https://repo1.maven.org/maven2/" }
+        maven { url "https://www.jitpack.io" }
+
+        //公司maven私服
+        maven {
+            url "https://packages.aliyun.com/maven/repository/2059818-release-mYrrDg/"
+            credentials {
+                username '611dcf0c1069a2b099fef257'
+                password 'BSYRFZsTXZv4'
+            }
+        }
+    }
+}
+
+include ':AndResGuard-core', ':AndResGuard-gradle-plugin', ':AndResGuard-cli'
+include 'SevenZip'

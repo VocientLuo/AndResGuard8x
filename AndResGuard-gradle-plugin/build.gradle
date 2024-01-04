@@ -1,0 +1,30 @@
+apply plugin: 'groovy'
+apply plugin: 'maven-publish'
+
+dependencies {
+  implementation gradleApi()
+  implementation localGroovy()
+  //compile group: 'com.tencent.mm', name: 'AndResGuard-core', version: version
+  implementation 'com.google.gradle:osdetector-gradle-plugin:1.6.0'
+  implementation project(':AndResGuard-core')
+}
+
+ext {
+  // artifactId
+  aarId = "AndResGuard-gradle-plugin"
+  // snapshot version use x.x.x-snapshot, release version use x.x.x
+  versionName = rootProject.ext.versionName
+  // 默认 false, true 代表推远程maven仓
+  publishToServer = rootProject.ext.publishToServer
+  groupID = rootProject.ext.groupID
+  // aar local path
+  localPath = '../repo'
+}
+
+
+apply from: "../nexus_maven_push.gradle"
+
+//
+//repositories {
+//  mavenCentral()
+//}

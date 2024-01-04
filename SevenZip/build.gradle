@@ -1,0 +1,80 @@
+//apply plugin: 'com.google.osdetector'
+apply plugin: 'maven-publish'
+apply plugin: 'java'
+
+version rootProject.ext.versionName
+group rootProject.ext.groupID
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.java.srcDirs
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+ext {
+    // 默认 false, true 代表推远程maven仓
+    publishToServer = rootProject.ext.publishToServer
+    // aar local path
+    localPath = '../repo'
+}
+
+publishing {
+    repositories {
+        maven {
+            if (!publishToServer) {
+                url = localPath
+            } else {
+                url = REPOSITORY_URL
+                credentials {
+                    username = NEXUS_USERNAME
+                    password = NEXUS_PASSWORD
+                }
+            }
+        }
+    }
+    publications {
+        ResguardPub(MavenPublication) {
+            artifactId POM_ARTIFACT_ID
+            groupId group
+            artifact("executable/SevenZip-linux-x86_32.exe") {
+                classifier "linux-x86_32"
+                extension "exe"
+            }
+            artifact("executable/SevenZip-linux-x86_64.exe") {
+                classifier "linux-x86_64"
+                extension "exe"
+            }
+            artifact("executable/SevenZip-linux-arm_32.exe") {
+                classifier "linux-arm_32"
+                extension "exe"
+            }
+            artifact("executable/SevenZip-linux-aarch_64.exe") {
+                classifier "linux-aarch_64"
+                extension "exe"
+            }
+            artifact("executable/SevenZip-windows-x86_32.exe") {
+                classifier "windows-x86_32"
+                extension "exe"
+            }
+            artifact("executable/SevenZip-windows-x86_64.exe") {
+                classifier "windows-x86_64"
+                extension "exe"
+            }
+            artifact("executable/SevenZip-osx-x86_64.exe") {
+                classifier "osx-x86_64"
+                extension "exe"
+            }
+            artifact("executable/SevenZip-osx-aarch_64.exe") {
+                classifier "osx-aarch_64"
+                extension "exe"
+            }
+        }
+    }
+}

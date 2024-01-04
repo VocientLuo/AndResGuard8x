@@ -1,0 +1,37 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        mavenCentral()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.0.0'
+        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.26.0'
+    }
+}
+
+allprojects {
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = rootProject.ext.javaVersion
+        targetCompatibility = rootProject.ext.javaVersion
+    }
+
+    tasks.withType(GroovyCompile) {
+        sourceCompatibility = rootProject.ext.javaVersion
+        targetCompatibility = rootProject.ext.javaVersion
+    }
+}
+
+ext {
+    javaVersion = JavaVersion.VERSION_17
+
+    POM_PACKAGING = "pom"
+    POM_DESCRIPTION = "Android Resource Proguard Core Lib"
+
+    versionName = "1.1.4.11"
+    // 默认 false, true 代表推远程maven仓
+    publishToServer = false
+    groupID = "com.xluo.plugin"
+    // aar local path
+    localPath = './repo'
+}

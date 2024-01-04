@@ -1,0 +1,29 @@
+
+afterEvaluate {
+    publishing {
+        repositories {
+            maven {
+                if (!publishToServer) {
+                    url = localPath
+                } else {
+                    url = REPOSITORY_URL
+                    credentials {
+                        username = NEXUS_USERNAME
+                        password = NEXUS_PASSWORD
+                    }
+                }
+            }
+        }
+        publications {
+            release(MavenPublication) {
+                from components.java
+                pom {
+                    name = aarId
+                    artifactId = aarId
+                    groupId = groupID
+                    version = versionName
+                }
+            }
+        }
+    }
+}
