@@ -1,6 +1,6 @@
-#  Android资源混淆工具使用说明 #
+#  forked from https://github.com/shwenzhang/AndResGuard
 
-## A fork of https://github.com/shwenzhang/AndResGuard, only bug fixs,no new features.
+# Android资源混淆工具使用说明 #
 
 
 ## Changes
@@ -51,6 +51,8 @@ NEXUS_PASSWORD=***
 ```
 
 * 3、执行publish即可推送到远程仓
+
+亲测在debug模式下能正常工作，未做详细测试。
 
 
    
